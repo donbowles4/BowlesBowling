@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] float fltJumpSpd = 10f;
     Vector2 movingInput;
     public Rigidbody2D myRB;
-    CapsuleCollider2D playerBody;
+    BoxCollider2D playerBody;
     Animator guyAnimation;
 
 
@@ -17,11 +17,16 @@ public class Player : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         guyAnimation = GetComponent<Animator>();
-        playerBody = GetComponent<CapsuleCollider2D>();
+        playerBody = GetComponent<BoxCollider2D>();
     }
 
     void Update()
     {
+        if(!playerBody.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {
+        guyAnimation.SetBool("blnJump",true);
+        }
+        else{guyAnimation.SetBool("blnJump",false);}
         Walk();
         Flip();
     }
@@ -47,4 +52,13 @@ public class Player : MonoBehaviour
         transform.localScale = new Vector2 (Mathf.Sign(-myRB.velocity.x), 1f);
         }
     } 
+    void OnJump(InputValue value)
+    {
+        if(!playerBody.IsTouchingLayers(LayerMask.GetMask("Ground")))
+        {return;}
+        if(value.isPressed)
+        {
+            myRB.velocity += new Vector2 (0f, fltJumpSpd);
+        }
+    }
 }
