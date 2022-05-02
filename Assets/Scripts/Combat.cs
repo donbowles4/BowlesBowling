@@ -8,6 +8,7 @@ public class Combat : MonoBehaviour
     public Transform attackPoint;
     public float fltAttackRange = 0.6f;
     public LayerMask enemyLayers;
+    public int intAttackDamage = 40;
 
     void Update()
     {
@@ -20,7 +21,7 @@ public class Combat : MonoBehaviour
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, fltAttackRange, enemyLayers);
         foreach(Collider2D enemy in hitEnemies)
         {
-            Debug.Log("I hit" + enemy.name);
+           enemy.GetComponent<enemy>().TakeDamage(intAttackDamage);
         }
     }
         void OnDrawGizmosSelected() 
