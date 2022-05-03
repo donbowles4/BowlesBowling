@@ -50,6 +50,9 @@ TagManager:
   - name: Enemy
     uniqueID: 2928810381
     locked: 0
+  - name: stripe
+    uniqueID: 4020164833
+    locked: 0
   - name: Player
     uniqueID: 3974655453
     locked: 0

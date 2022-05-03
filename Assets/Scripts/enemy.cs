@@ -6,6 +6,8 @@ public class enemy : MonoBehaviour
 {
   public int intMaxHealth = 100;
   int intCurrentHealth;
+  public int intPinsKnocked = 0;
+  GameObject bowlingPin;
     void Start()
     {
         intCurrentHealth = intMaxHealth;
@@ -19,13 +21,15 @@ public class enemy : MonoBehaviour
         if(intCurrentHealth <= 0)
         {
             Die();
+            GetComponent<GameManager>().PinCount();
         }
     }
 
-    void Die()
+    public void Die()
         {
             GetComponent<Collider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(bowlingPin);
             this.enabled=false;
         }
     
