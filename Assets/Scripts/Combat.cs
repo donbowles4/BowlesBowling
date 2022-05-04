@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour
 {
-    [SerializeField] AudioClip swordSlash;
     public Animator animator;
     public Transform attackPoint;
     public float fltAttackRange = 0.6f;
@@ -18,7 +17,7 @@ public class Combat : MonoBehaviour
     void OnFire()
     {
         animator.SetTrigger("Attack");
-        AudioSource.PlayClipAtPoint(swordSlash,Camera.main.transform.position);
+
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, fltAttackRange, enemyLayers);
         foreach(Collider2D enemy in hitEnemies)
         {
