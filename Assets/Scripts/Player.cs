@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] float fltJumpSpd = 10f;
     Vector2 movingInput;
     public Rigidbody2D myRB;
-    BoxCollider2D playerBody;
+    CircleCollider2D playerBody;
     Animator guyAnimation;
 
 
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         guyAnimation = GetComponent<Animator>();
-        playerBody = GetComponent<BoxCollider2D>();
+        playerBody = GetComponent<CircleCollider2D>();
     }
 
     void Update()
